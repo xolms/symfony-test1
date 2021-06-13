@@ -1,0 +1,22 @@
+.button {
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  width: 100%;
+  &_grey {
+    background-color: #464646;
+    color: #fff;
+  }
+  &_radius {
+    border-radius: 8px;
+  }
+  &_login {
+    font-size: 17px;
+    font-weight: 500;
+    height: 46px;
+    line-height: 46px;
+    max-width: 244px;
+    margin: 0 auto;
+    display: block;
+  }
+}
