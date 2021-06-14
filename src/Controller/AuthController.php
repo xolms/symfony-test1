@@ -28,7 +28,7 @@ class AuthController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $hasher)
     {
         $password = $request->get('password');
-        $phone = $request->get('phone');
+        $phone = $request->get('username');
         $user = new User();
         $user->setPhone($phone);
         $password = $hasher->hashPassword($user, $password);
