@@ -76,6 +76,7 @@ export default {
           username: this.phone,
           password: this.password
         })
+        console.log(resp)
         if (resp && resp.status === 200) {
           this.error = null
           const token = `Bearer ${resp.data.token}`
@@ -84,12 +85,10 @@ export default {
           this.$axios.defaults.headers.common['Authorization'] = token
           return this.$router.replace('/')
         }
-        else {
-          return this.error = resp.data.message
-        }
       }
       catch (e) {
         console.log(e)
+        return this.error = 'Неправильный логин или пароль'
       }
     }
   },

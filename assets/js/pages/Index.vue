@@ -74,8 +74,20 @@ export default {
         return item.id === id
       })
       if (findVideo) {
-        this.hls.loadSource(findVideo.link)
-        this.hls.attachMedia(this.$refs.video)
+        const video = this.$refs.video
+        if (Hls.isSupported()) {
+          this.hls.loadSource(findVideo.link)
+          this.hls.attachMedia(video)
+          this.hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play();
+          });
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = findVideo.link
+          video.addEventListener('loadedmetadata', function() {
+            video.play();
+          })
+        }
       }
 
     }
